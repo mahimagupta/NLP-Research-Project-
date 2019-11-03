@@ -6,7 +6,9 @@ The xml file has various tags for every article - refer tags.png
 
 <text> tag contains the article
 
-Used Python to convert the unicode characters \u... into human readable form but found that this file only contains redirect data. - refer wiktwords.txt
+Referred https://github.com/tatuylonen/wiktextract for extracing data from Wiktionary
+
+Converted the unicode characters \u... into human readable form but found that the file generated only contains redirect data. - refer wiktwords.txt and test.php
 
 Then wrote a php file to parse the wiki dump and find all <text> tags and append them into a file to create the dictionary.
 
