@@ -1,6 +1,6 @@
 https://dumps.wikimedia.org/hiwiki/20191020/hiwiki-20191020-pages-articles-multistream.xml.bz2 
 
-This is a 1GB XML file of all hindi wikipedia articles. (Hard to open a 1GB file)
+hiwiki-20191020-pages-articles-multistream.xml.bz2 is a 1GB XML file of all hindi wikipedia articles. (Hard to open a 1GB file)
 
 The xml file has various tags for every article - refer tags.png
 
