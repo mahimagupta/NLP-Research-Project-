@@ -7,7 +7,7 @@ The xml file has various tags for every article - refer tags.png
 
 <text> tag contains the articles
 
-
+#Attempt 2
 
 I used the tool 'wiktextract' to extract the wikipedia dump file and to parse a dictionary out of it.
 
