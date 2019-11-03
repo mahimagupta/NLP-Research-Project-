@@ -6,7 +6,7 @@ The xml file has various tags for every article - refer tags.png
 
 <text> tag contains the article
 
-Referred https://github.com/tatuylonen/wiktextract for extracing data from Wiktionary
+Used https://github.com/tatuylonen/wiktextract for extracing data from Wiktionary
 
 Converted the unicode characters \u... into human readable form but found that the file generated only contains redirect data. - refer wiktwords.txt and test.php
 
