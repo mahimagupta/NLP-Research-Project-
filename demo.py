@@ -11,7 +11,6 @@ from nltk.probability import FreqDist
 
 
 class Lemmatize():
-	'''class for tokenizer'''
 
 	def __init__(self,text=None):
 		if text is  not None:
