@@ -2,6 +2,7 @@ import os
 import sys 
 import json
 import nltk
+import codecs
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
 from nltk.probability import FreqDist
@@ -16,6 +17,7 @@ from nltk.probability import FreqDist
 # filename=sys.argv[1]
 # output_file = "output.txt"
 file1_content = open('/Users/mahimagupta/Desktop/hindi.txt','rU')
+
 for line in file1_content:
     line=line.strip()
     # print(line)
@@ -23,6 +25,22 @@ words=word_tokenize(line)
 for word in words:
     print(word)
 # print(str(words).strip('[]').decode('utf-8'))
+
+matras= {
+    1: ["ो","े","ू","ु","ी","ि","ा"],
+    2: ["कर","ाओ","िए","ाई","ाए","ने","नी","ना","ते","ीं","ती","ता","ाँ","ां","ों","ें"],
+    3: ["ाकर","ाइए","ाईं","ाया","ेगी","ेगा","ोगी","ोगे","ाने","ाना","ाते","ाती","ाता","तीं","ाओं","ाएं","ुओं","ुएं","ुआं"],
+    4: ["ाएगी","ाएगा","ाओगी","ाओगे","एंगी","ेंगी","एंगे","ेंगे","ूंगी","ूंगा","ातीं","नाओं","नाएं","ताओं","ताएं","ियाँ","ियों","ियां"],
+    5: ["ाएंगी","ाएंगे","ाऊंगी","ाऊंगा","ाइयाँ","ाइयों","ाइयां"],
+}.decode('utf-8')
+
+
+for m in matras:
+    if len(word) > m + 1:
+        for mat in matras[m]:
+            if word.endswith(mat):
+                # return word[:-m]
+                #print(word)
 
 
 # word_freq =[]
