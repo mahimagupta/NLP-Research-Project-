@@ -52,10 +52,10 @@ def generate_stem_words(word):
     for key in suffixes.keys():
         for value in suffixes[key]:
             if word.endswith(value):
-                # suff = word.rindex(value)
+                suff = word.rindex(value)
                 # flag=1
-                # wordDict[word].append(word[:suff])
-                wordDict[word].append(value)
+                wordDict[word].append(word[:suff])
+                # wordDict[word].append(value)
                 # break
         # if(flag==1):
             # break     
