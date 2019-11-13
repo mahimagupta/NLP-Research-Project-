@@ -7,13 +7,12 @@ from nltk.tag import tnt
 from nltk.corpus import indian
 
 f  = open("input.txt", "r") 
-    
 dataFile  = open("output.txt", "w")
 lemmaFile  = open("lemma.txt", "w+")
 tagFile = open("tags.txt","w")
 wordDict = {}
 
-
+# Peforms Preprocessing, generates POS Tags for words
 def processModel():
     train_data = indian.tagged_sents('hindi.pos')
     tnt_pos_tagger = tnt.TnT()
@@ -40,17 +39,14 @@ def processModel():
     dataFile.close()
     return        
         
-            
+
+# If a word is tagged as Noun/Preposition/Auxiliary Verb -> The base form remains the same otherwise generate_stem_words function is called
 def lemmatize():
-    
-    # mFile  = open("output.txt", "r")
     d = open("tags.txt","r")
     data1 = d.read()
     data1 = data1.split("\n")
     data1[-1] = data1[-1].strip('\n')  
-    # data = mFile.read()
-    # data = data.split("\n")
-    # data[-1] = data[-1].strip('\n')    
+      
 
     for token in data1:
         if token=='':
@@ -64,6 +60,7 @@ def lemmatize():
             generate_stem_words(line[0].strip())
     
 
+# Generates Base form based on Suffixes as well as Rules
 def generate_stem_words(word):
     
     suffixes = {
@@ -113,18 +110,13 @@ def generate_stem_words(word):
  
         if wordDict.get(word,None) == None:
             wordDict[word] = []
-        # flag=0
         for key in suffixes.keys():
             for value in suffixes[key]:
                 if word.endswith(value):
                     suff = word.rindex(value)
-                    # flag=1
                     wordDict[word].append(word[:suff])
-                    # wordDict[word].append(value)
-                    # break
-            # if(flag==1):
-                # break     
 
+# prints the dictionary with Key as the word and Value as the root word
 def printdict():
     for k,v in wordDict.items():
         if not v:
@@ -138,19 +130,12 @@ def printdict():
      
     
 
-    
-
 def main():
     
     processModel()
     lemmatize()
     printdict()
     
-    
-    # lemmatize(dataFile)
-
-     
-
         
 if __name__=="__main__":
     main()
