@@ -6,7 +6,7 @@ import nltk
 from nltk.tag import tnt
 from nltk.corpus import indian
 
-f  = open("input2.txt", "r") 
+f  = open("input.txt", "r") 
     
 dataFile  = open("output.txt", "w")
 lemmaFile  = open("lemma.txt", "w+")
