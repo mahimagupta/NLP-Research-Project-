@@ -6,7 +6,7 @@ import nltk
 from nltk.tag import tnt
 from nltk.corpus import indian
 
-f  = open("input.txt", "r") 
+f  = open("tech_text_final.txt", "r") 
 dataFile  = open("output.txt", "w")
 lemmaFile  = open("lemma.txt", "w+")
 tagFile = open("tags.txt","w")
@@ -24,7 +24,10 @@ def processModel():
         line=line.replace(',',' ')
         line=line.replace('-',' ')
         line=line.replace(':',' ')
-        line=line.replace('?',' ')       
+        line=line.replace('?',' ')
+        line=line.replace('(',' ') 
+        line=line.replace(')',' ')
+        line=line.replace('.',' ')        
         line = line.split() 
         for word in line:
             if word!=" ":

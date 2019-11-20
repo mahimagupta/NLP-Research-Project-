@@ -1,0 +1,33 @@
+
+https://dumps.wikimedia.org/hiwiki/20191020/hiwiki-20191020-pages-articles-multistream.xml.bz2 
+
+hiwiki-20191020-pages-articles-multistream.xml (Uncompressed Version) is a 1GB XML file of all hindi wikipedia articles. (Hard to open a 1GB file)
+
+The xml file has various tags for every article - refer tags.png
+
+<text> tag contains the articles
+
+#Attempt 2
+
+I used the tool 'wiktextract' to extract the wikipedia dump file and to parse a dictionary out of it.
+
+The tool generated wiktwords.txt but the output was not human readable. (Please refer wiktwords.txt)
+
+Then I coded a script in php to convert the output in human readable format (UTF-8) using the script test.php. (Please find the code at convertToUtf8.php and the human readable file at wiktwords-human-readable.txt).
+
+However, after the output was converted to human readable format, it was discovered that the tool wiktextract had only parsed the redirects.
+
+SYNTAX:
+Installation:
+git clone https://github.com/tatuylonen/wiktextract.git
+cd wiktextract
+python3 setup.py install
+
+Usage:
+wiktwords data/hiwiki-20191020-pages-articles-multistream.xml.bz2 --out wikt.words --language Hindi --all
+
+REFERENCES:
+GIT repository for wikiextract can be found at : https://github.com/tatuylonen/wiktextract
+
+
+
