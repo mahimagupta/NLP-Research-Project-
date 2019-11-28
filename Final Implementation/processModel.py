@@ -1,9 +1,7 @@
 
 # -*- coding: utf-8 -*-
-inputFile = open('test.conllu','r')
-# outputFile = open('t.txt','w')
-# outputFile.write('<s> START')
-# outputFile.write('\n')
+inputFile = open('train.conllu','r')
+
 ruleFile = open('rules.txt','w')
 prev =['None']
 lineArray = []
@@ -12,8 +10,6 @@ for line in inputFile:
     if line.find('#')!=-1:
         continue
     elif line.strip('\n')!='':
-
-       
         line = line.split()
 
         if line[1]=='।':
