@@ -7,17 +7,24 @@ from nltk.tag import tnt
 from nltk.corpus import indian
 
 
-lemmaFile  = open("lemma.txt", "w+")
 outputFile = open('testOutput.txt','w')
 wordDict = {}
 taggedFile  = open("output_test.txt", "r")
 
 def checkRules():
     rules = []
-    with open('rules2.txt','r') as rulesFile:
+    with open('rules.txt','r') as rulesFile:
         for line in rulesFile:
             line = line.strip('\n').split()
             rules.append(line)
+
+    rulesTwo = []
+    with open('rules2.txt','r') as rulesFile:
+        for line in rulesFile:
+            line = line.strip('\n').split()
+            rulesTwo.append(line)
+
+
     taggedData = []
     prev= ['None']
     for line in taggedFile:
@@ -27,39 +34,44 @@ def checkRules():
         currTag = line[1]
         prev.append(currTag)
         taggedData.append(line)
-    # print(taggedData)
-
-    count = 0
+   
     for element in taggedData:
         if element[0]=='<s>' or element[0]=='</s>':
+            
             outputFile.write(element[0] + ' ' + element[1])
             outputFile.write('\n')
             continue
         if any(char.isdigit() for char in element[0]) or element[1] == 'SYM':
+
             outputFile.write(element[0] + ' ' + element[0])
             outputFile.write('\n')
             continue
         flag = 0
-        
+        count = 0
+        match = []
         for rule in rules:
-            if element == rule[:3]:
-                count = count+1
-                # print('****')
-                # print(element)
-                # print(rule)
-                outputFile.write(element[0] + ' ' + rule[3])
-                outputFile.write('\n')
-                flag = 1
-                # print('****')
-                # input()
-                break
+            if element[:2] == rule[:2]:
+                match.append(rule[2])
+                count = count +1 
+
+        if count==1:
+            outputFile.write(element[0] + ' ' + match[0])
+            outputFile.write('\n') 
+            flag = 1
+        
+        elif count>1:
+            for rule in rulesTwo:
+                if element == rule[:3]:
+                    outputFile.write(element[0] + ' ' + rule[3])
+                    outputFile.write('\n')
+                    flag = 1
+                    break
+
         if flag == 0:
             lemma = lemmatize(element)
             outputFile.write(element[0] + ' ' + lemma)
             outputFile.write('\n')
-        
-    print(count)
-# If a word is tagged as Noun/Preposition/Auxiliary Verb -> The base form remains the same otherwise generate_stem_words function is called
+    
 def lemmatize(element):
 
         if element[1].strip().startswith("NN") or element[1].strip().startswith("VAUX") :
@@ -70,7 +82,6 @@ def lemmatize(element):
             return generate_stem_words(element[0].strip())
     
 
-# Generates Base form based on Suffixes as well as Rules
 def generate_stem_words(word):
     
     suffixes = {
